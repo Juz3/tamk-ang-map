@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { environment } from "../environments/environment";
 
 interface ItemResponse {
   count: number;
@@ -8,11 +9,11 @@ interface ItemResponse {
   results: [Location];
 }
 
-interface LocationResponse {
+/* interface LocationResponse {
   id: number;
   latitude: number;
   longitude: number;
-}
+} */
 
 @Injectable()
 export class LocationService {
@@ -23,7 +24,7 @@ export class LocationService {
   }
 
   fetch(callback) {
-    if (process.env.NODE_ENV === "production") {
+    if (environment.production) {
       this.http
         .get<ItemResponse>("https://tamk-ang-map.herokuapp.com/api/locations/")
         .subscribe((jsonObject) => {

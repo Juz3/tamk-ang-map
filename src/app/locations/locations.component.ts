@@ -135,7 +135,7 @@ export class LocationsComponent implements OnInit {
 
     console.log("locs", this.locations);
 
-    for (const loc of this.locations) {
+    /* for (const loc of this.locations) {
       const myLatLng = { lat: loc.latitude, lng: loc.longitude };
       const marker = new google.maps.Marker({
         position: myLatLng,
@@ -144,7 +144,7 @@ export class LocationsComponent implements OnInit {
       });
 
       marker.setMap(this.map);
-    }
+    } */
   }
 
   /* postNew() {
