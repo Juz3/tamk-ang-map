@@ -6,8 +6,8 @@ import {
   animate,
   transition,
 } from "@angular/animations";
-import Location from "../location";
-import { LocationService } from "../location.service";
+/* import Location from "../location";
+import { LocationService } from "../location.service"; */
 import {} from "googlemaps";
 
 @Component({
@@ -19,24 +19,25 @@ export class LocationsComponent implements OnInit {
   @ViewChild("gmap", { static: true }) gmapElement: any;
   map: google.maps.Map;
 
-  locations: Location[] = [];
+  /* locations: Location[] = [];
   locationService: LocationService;
   latitude: number;
-  longitude: number;
+  longitude: number; */
 
-  constructor(locationService: LocationService) {
+  /* constructor(locationService: LocationService) {
     // this.locations = locationService.fetch();
     this.locationService = locationService;
-  }
+  } */
 
   ngOnInit(): void {
     console.log("init locationscomponent");
-    this.locationService.fetch((result) => {
+    this.initMap();
+    /* this.locationService.fetch((result) => {
       this.locations = result;
       console.log("result:", result);
 
       this.initMap();
-    });
+    }); */
   }
 
   initMap(): void {
@@ -133,7 +134,7 @@ export class LocationsComponent implements OnInit {
       ],
     });
 
-    console.log("locs", this.locations);
+    /* console.log("locs", this.locations); */
 
     /* for (const loc of this.locations) {
       const myLatLng = { lat: loc.latitude, lng: loc.longitude };
