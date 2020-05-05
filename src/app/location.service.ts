@@ -23,12 +23,21 @@ export class LocationService {
   }
 
   fetch(callback) {
-    this.http
-      .get<ItemResponse>("http://localhost:8080/api/locations/")
-      .subscribe((jsonObject) => {
-        console.log("at service fetch", jsonObject);
-        callback(jsonObject);
-      });
+    if (process.env.NODE_ENV === "production") {
+      this.http
+        .get<ItemResponse>("https://tamk-ang-map.herokuapp.com/api/locations/")
+        .subscribe((jsonObject) => {
+          console.log("at service fetch", jsonObject);
+          callback(jsonObject);
+        });
+    } else {
+      this.http
+        .get<ItemResponse>("http://localhost:8080/api/locations/")
+        .subscribe((jsonObject) => {
+          console.log("at service fetch", jsonObject);
+          callback(jsonObject);
+        });
+    }
   }
 
   /* post(lat: number, lon: number) {
