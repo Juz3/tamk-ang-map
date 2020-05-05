@@ -44,14 +44,14 @@ export class LocationsComponent implements OnInit {
     console.log("init map");
     // Tampere coordinates: 61.504, 23.829
     const mapProperties = {
-      zoom: 4,
-      center: { lat: 61.504, lng: 23.829 },
+      /* zoom: 4,
+      center: { lat: 61.504, lng: 23.829 }, */
     };
     /* this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProperties); */
 
     this.map = new google.maps.Map(this.gmapElement.nativeElement, {
-      center: { lat: 40.674, lng: -73.945 },
-      zoom: 12,
+      center: { lat: 61.504, lng: 23.829 },
+      zoom: 8,
       styles: [
         { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
         { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
