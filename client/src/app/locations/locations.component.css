@@ -1,0 +1,18 @@
+.highlight {
+  background-color: rgb(59, 61, 66);
+}
+
+.monospace {
+  font-family: Inconsolita, Monaco, Courier, monospace; font-size: 75%;
+}
+
+#gmap {
+  position: fixed;
+  width: 100vw;
+  height: 400px;
+  overflow: hidden;
+  z-index: 0;
+  top: 0;
+  left: 0;
+
+}
