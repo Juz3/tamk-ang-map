@@ -26,7 +26,7 @@ export class LocationService {
   fetch(callback) {
     if (environment.production) {
       this.http
-        .get<ItemResponse>("https://tamk-ang-map.herokuapp.com/api/locations/")
+        .get<ItemResponse>("http://tamk-ang-map.herokuapp.com/api/locations/")
         .subscribe((jsonObject) => {
           console.log("at service fetch", jsonObject);
           callback(jsonObject);
