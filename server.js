@@ -1,8 +1,14 @@
 // node.js server
 const express = require("express");
 const path = require("path");
-
+const cors = require("cors");
+const mountRoutes = require("./routes/routeHandler");
 const app = express();
+
+app.use(cors());
+app.use(express.json({ extended: true }));
+
+mountRoutes(app);
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + "/dist/tamk-ang-map"));

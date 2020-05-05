@@ -1,6 +1,5 @@
 <div class="container">
-  <div #gmap style="height: 400px; width: 70vw">
-  </div>
+  <div #gmap style="height: 400px; width: 70vw;"></div>
   <table>
     <thead>
       <tr>
@@ -11,19 +10,31 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let location of locations; let o = odd" [class.highlight]="!o" class="monospace">
-        <td>{{location.id}}</td>
-        <td>{{location.latitude}}</td>
-        <td>{{location.longitude}}</td>
-        <td><button (click)="delete(location.id)">Delete</button></td>
+      <tr
+        *ngFor="let location of locations; let o = odd"
+        [class.highlight]="!o"
+        class="monospace"
+      >
+        <td>{{ location.id }}</td>
+        <td>{{ location.latitude }}</td>
+        <td>{{ location.longitude }}</td>
+        <td><button>Delete</button></td>
       </tr>
     </tbody>
     <tfoot>
       <tr>
         <td></td>
-        <td><input type="number" [(ngModel)]="latitude" placeholder="latitude" /></td>
-        <td><input type="number" [(ngModel)]="longitude" placeholder="longitude" /></td>
-        <td><button (click)="postNew()">Post New</button></td>
+        <td>
+          <input type="number" [(ngModel)]="latitude" placeholder="latitude" />
+        </td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="longitude"
+            placeholder="longitude"
+          />
+        </td>
+        <td><button>Post New</button></td>
       </tr>
     </tfoot>
   </table>

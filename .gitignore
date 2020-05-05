@@ -12,6 +12,7 @@
 
 # custom local var
 .local
+db/dbconfig/
 
 # profiling files
 chrome-profiler-events*.json
