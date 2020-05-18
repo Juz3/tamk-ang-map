@@ -33,7 +33,7 @@ export class LocationService {
         });
     } else {
       this.http
-        .get<ItemResponse>("http://localhost:8080/api/locations/")
+        .get<ItemResponse>("http://localhost:5000/api/locations/")
         .subscribe((jsonObject) => {
           console.log("at service fetch", jsonObject);
           callback(jsonObject);

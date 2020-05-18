@@ -21,14 +21,16 @@ export default class Location {
     return this._id;
   }
 
-  public get latitude(): number {
+  public get latitude(): string {
     // return this._latitude;
-    return parseInt(this._latitude, 10);
+    console.log("get lat");
+    return this._latitude;
   }
 
-  public get longitude(): number {
+  public get longitude(): string {
     // return this._longitude;
-    return parseInt(this._latitude, 10);
+    console.log("get long");
+    return this._latitude;
   }
 
   /* public set latitude(latitude: number) {

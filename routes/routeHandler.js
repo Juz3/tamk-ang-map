@@ -12,8 +12,10 @@
 
 /* locations */
 const locations = require("./locations");
+const newLocation = require("./newLocation");
 
 module.exports = (app) => {
   app.use("/api/locations", locations);
+  app.use("/api/locations/new", newLocation);
   // add routes
 };

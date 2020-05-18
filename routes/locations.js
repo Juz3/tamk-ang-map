@@ -12,10 +12,8 @@ router.get("/", async (req, res) => {
     );
 
     if (responseData.rows.length < 1) {
-      console.log("1", responseData);
       return res.status(400).json({ msg: "Invalid query, no results" });
     } else {
-      console.log("2", responseData);
       res.send(responseData.rows);
     }
   } catch (err) {
