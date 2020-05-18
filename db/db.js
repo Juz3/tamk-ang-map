@@ -6,7 +6,10 @@ if (process.env.NODE_ENV === "production") {
   const connString = process.env.DATABASE_URL;
   console.log("db @ production environment");
 
-  pool = new Pool({ connectionString: connString, ssl: true });
+  pool = new Pool({
+    connectionString: connString,
+    ssl: { rejectUnauthorized: false },
+  });
 } else {
   // Local environment
 
