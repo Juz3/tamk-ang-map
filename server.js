@@ -17,5 +17,9 @@ app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname + "/dist/tamk-ang-map/index.html"));
 });
 
-// Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8080);
+const port = process.env.PORT || 5000;
+
+// Start the app by listening on the default Heroku port when prod.
+app.listen(port);
+
+console.log(`server listening on ${port}`);

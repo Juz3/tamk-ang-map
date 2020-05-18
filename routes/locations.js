@@ -12,13 +12,14 @@ router.get("/", async (req, res) => {
     );
 
     if (responseData.rows.length < 1) {
+      console.log("1", responseData);
       return res.status(400).json({ msg: "Invalid query, no results" });
     } else {
-      //console.log(responseData.rows);
+      console.log("2", responseData);
       res.send(responseData.rows);
     }
   } catch (err) {
-    console.error(err.message);
+    console.error("error", err.message);
     res.status(500).send("Server error");
   }
 });
