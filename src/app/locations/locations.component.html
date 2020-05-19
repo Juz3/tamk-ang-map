@@ -6,6 +6,7 @@
         <th>#</th>
         <th>Latitude</th>
         <th>Longitude</th>
+        <!-- <th>Comment</th> -->
         <th>Action</th>
       </tr>
     </thead>
@@ -18,23 +19,27 @@
         <td>{{ location.id }}</td>
         <td>{{ location.latitude }}</td>
         <td>{{ location.longitude }}</td>
-        <td><button>Delete</button></td>
+        <!-- <td>-</td> -->
+        <td><button (click)="deleteLocation(location.id)">Delete</button></td>
       </tr>
     </tbody>
     <tfoot>
       <tr>
         <td></td>
         <td>
-          <input type="number" [(ngModel)]="latitude" placeholder="latitude" />
+          <input type="text" [(ngModel)]="latitude" placeholder="latitude" />
         </td>
         <td>
-          <input
-            type="number"
-            [(ngModel)]="longitude"
-            placeholder="longitude"
-          />
+          <input type="text" [(ngModel)]="longitude" placeholder="longitude" />
         </td>
-        <td><button>Post New</button></td>
+        <!-- <td>
+          <input type="text" [(ngModel)]="comment" placeholder="comment" />
+        </td> -->
+        <td>
+          <button (click)="postNewLocationMarker()">
+            Set new location marker
+          </button>
+        </td>
       </tr>
     </tfoot>
   </table>

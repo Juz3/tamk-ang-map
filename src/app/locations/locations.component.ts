@@ -1,12 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from "@angular/animations";
 import Location from "../location";
+import mapStyles from "./mapStyles";
 import { LocationService } from "../location.service";
 import {} from "googlemaps";
 
@@ -30,7 +24,7 @@ export class LocationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("init locationscomponent");
+    console.log("init locations component and map");
     // this.initMap();
     this.locationService.fetch((result) => {
       this.locations = result;
@@ -40,100 +34,7 @@ export class LocationsComponent implements OnInit {
     });
   }
 
-  initMap(): void {
-    console.log("init map");
-    // Tampere coordinates: 61.504, 23.829
-    const mapProperties = {
-      /* zoom: 4,
-      center: { lat: 61.504, lng: 23.829 }, */
-    };
-    /* this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProperties); */
-
-    this.map = new google.maps.Map(this.gmapElement.nativeElement, {
-      center: { lat: 61.504, lng: 23.829 },
-      zoom: 8,
-      styles: [
-        { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
-        { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
-        { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
-        {
-          featureType: "administrative.locality",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#d59563" }],
-        },
-        {
-          featureType: "poi",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#d59563" }],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "geometry",
-          stylers: [{ color: "#263c3f" }],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#6b9a76" }],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry",
-          stylers: [{ color: "#38414e" }],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry.stroke",
-          stylers: [{ color: "#212a37" }],
-        },
-        {
-          featureType: "road",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#9ca5b3" }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "geometry",
-          stylers: [{ color: "#746855" }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "geometry.stroke",
-          stylers: [{ color: "#1f2835" }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#f3d19c" }],
-        },
-        {
-          featureType: "transit",
-          elementType: "geometry",
-          stylers: [{ color: "#2f3948" }],
-        },
-        {
-          featureType: "transit.station",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#d59563" }],
-        },
-        {
-          featureType: "water",
-          elementType: "geometry",
-          stylers: [{ color: "#17263c" }],
-        },
-        {
-          featureType: "water",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#515c6d" }],
-        },
-        {
-          featureType: "water",
-          elementType: "labels.text.stroke",
-          stylers: [{ color: "#17263c" }],
-        },
-      ],
-    });
-
+  loadMarkers(): void {
     console.log("locs", this.locations);
 
     for (const loc of this.locations) {
@@ -146,18 +47,58 @@ export class LocationsComponent implements OnInit {
         map: this.map,
         title: "Example marker",
       });
-
       marker.setMap(this.map);
     }
   }
 
-  /* postNew() {
-    console.log('post new');
-    this.locationService.post(this.latitude, this.longitude);
+  initMap(): void {
+    console.log("init map");
+    // Tampere coordinates: 61.504, 23.829
+
+    /*const mapProperties = {
+       zoom: 4,
+      center: { lat: 61.504, lng: 23.829 },
+    };*/
+    /* this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProperties); */
+
+    this.map = new google.maps.Map(this.gmapElement.nativeElement, {
+      center: { lat: 61.504, lng: 23.829 },
+      zoom: 8,
+      styles: mapStyles,
+    });
+
+    this.loadMarkers();
   }
 
-  delete(locationId: number) {
-    console.log('delete loc');
-    this.locationService.delete(locationId);
+  /* ngOnChanges(): void {
+    console.log("on changes, load again");
+    this.locationService.fetch((result) => {
+      this.locations = result;
+      console.log("result:", result);
+
+      this.initMap();
+    });
   } */
+
+  postNewLocationMarker() {
+    console.log("post new location marker");
+    this.locationService.post(
+      parseFloat(this.latitude),
+      parseFloat(this.longitude)
+    );
+
+    this.loadMarkers();
+
+    // google.maps.event.trigger(this.map, "resize");
+  }
+
+  deleteLocation(locationId: number) {
+    console.log("delete location marker at id ", locationId);
+    if (this.locations.length > 2) {
+      this.locationService.delete(locationId);
+    } else {
+      console.log("cant delete last location");
+    }
+    this.loadMarkers();
+  }
 }

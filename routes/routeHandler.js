@@ -13,9 +13,11 @@
 /* locations */
 const locations = require("./locations");
 const newLocation = require("./newLocation");
+const deleteLocation = require("./deleteLocation");
 
 module.exports = (app) => {
   app.use("/api/locations", locations);
   app.use("/api/locations/new", newLocation);
+  app.use("/api/locations/", deleteLocation);
   // add routes
 };

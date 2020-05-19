@@ -7,6 +7,7 @@ const db = require("../db/db");
 // @access  Public
 router.post("/", async (req, res) => {
   const { latitude, longitude } = req.body;
+  console.log("body:", req.body);
   try {
     await db.query(
       ` INSERT INTO   locations (id, latitude, longitude) 
