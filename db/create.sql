@@ -21,8 +21,8 @@ DROP TABLE IF EXISTS locations;
 CREATE TABLE locations
 (
     id         SERIAL,
-    latitude   NUMERIC (5,3)       NOT NULL,
-    longitude  NUMERIC (5,3)       NOT NULL,
+    latitude   NUMERIC (6,3)       NOT NULL,
+    longitude  NUMERIC (6,3)       NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -39,6 +39,6 @@ VALUES (DEFAULT, 61.504, 23.829);
 INSERT INTO locations (id, latitude, longitude)
 VALUES (DEFAULT, 21.504, 13.829);
 INSERT INTO locations (id, latitude, longitude)
-VALUES (DEFAULT, 65.504, 27.829);
+VALUES (DEFAULT, -90.504, -120.829);
 
 -- End

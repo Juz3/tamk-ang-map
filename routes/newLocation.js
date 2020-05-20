@@ -8,17 +8,21 @@ const db = require("../db/db");
 router.post("/", async (req, res) => {
   const { latitude, longitude } = req.body;
   console.log("body:", req.body);
-  try {
-    await db.query(
-      ` INSERT INTO   locations (id, latitude, longitude) 
-        VALUES        (DEFAULT, $1, $2)`,
-      [latitude, longitude]
-    );
-    console.log("Request success, req body:", res.req.body);
-    return res.status(201).send("insert new location successfully");
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
+  if (latitude > -90 && latitude < 90 && longitude > -180 && longitude < 180) {
+    try {
+      await db.query(
+        ` INSERT INTO   locations (id, latitude, longitude) 
+          VALUES        (DEFAULT, $1, $2)`,
+        [latitude, longitude]
+      );
+      console.log("Request success, req body:", res.req.body);
+      return res.status(201).send("insert new location successfully");
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server error");
+    }
+  } else {
+    res.status(500).send("Invalid request");
   }
 });
 

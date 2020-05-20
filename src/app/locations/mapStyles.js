@@ -1,11 +1,26 @@
 const mapStyles = [
-  { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+  { elementType: "geometry", stylers: [{ color: "#1b2627" }] },
   { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
   { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
   {
     featureType: "administrative.locality",
     elementType: "labels.text.fill",
     stylers: [{ color: "#d59563" }],
+  },
+  {
+    featureType: "administrative.country",
+    elementType: "labels.text.fill",
+    stylers: [{ color: "#ffffff" }],
+  },
+  {
+    featureType: "administrative.country",
+    elementType: "geometry.stroke",
+    stylers: [{ color: "#bbafa1" }],
+  },
+  {
+    featureType: "administrative.land_parcel",
+    elementType: "labels.text.fill",
+    stylers: [{ color: "#ff0000" }],
   },
   {
     featureType: "poi",
@@ -15,7 +30,7 @@ const mapStyles = [
   {
     featureType: "poi.park",
     elementType: "geometry",
-    stylers: [{ color: "#263c3f" }],
+    stylers: [{ color: "#18361d" }],
   },
   {
     featureType: "poi.park",
@@ -65,7 +80,7 @@ const mapStyles = [
   {
     featureType: "water",
     elementType: "geometry",
-    stylers: [{ color: "#17263c" }],
+    stylers: [{ color: "#0b1627" }],
   },
   {
     featureType: "water",

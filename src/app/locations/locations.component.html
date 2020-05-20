@@ -1,46 +1,68 @@
 <div class="container">
-  <div #gmap style="padding: 0; height: 90vh; width: 90vw; margin: 0 5%;"></div>
-  <table>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Latitude</th>
-        <th>Longitude</th>
-        <!-- <th>Comment</th> -->
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="let location of locations; let o = odd"
-        [class.highlight]="!o"
-        class="monospace"
-      >
-        <td>{{ location.id }}</td>
-        <td>{{ location.latitude }}</td>
-        <td>{{ location.longitude }}</td>
-        <!-- <td>-</td> -->
-        <td><button (click)="deleteLocation(location.id)">Delete</button></td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td></td>
-        <td>
-          <input type="text" [(ngModel)]="latitude" placeholder="latitude" />
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="longitude" placeholder="longitude" />
-        </td>
-        <!-- <td>
+  <div
+    #gmap
+    style="padding: 0; height: 70vh; width: 80vw; margin: 0 10%;"
+  ></div>
+  <div class="footerGrid">
+    <div></div>
+    <div>
+      <h2 *ngIf="!locations"><em>Loading...</em></h2>
+      <p class="info">
+        <em
+          >Use right click to add new markers on location. Or you can use the
+          table input below.</em
+        >
+      </p>
+      <table>
+        <thead>
+          <tr class="headerRow">
+            <th>#</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <!-- <th>Comment</th> -->
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let location of locations" class="tableRow">
+            <td>{{ location.id }}</td>
+            <td>{{ location.latitude }}</td>
+            <td>{{ location.longitude }}</td>
+            <!-- <td>-</td> -->
+            <td>
+              <button (click)="deleteLocation(location.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td>
+              <input
+                type="text"
+                [(ngModel)]="latitude"
+                placeholder="latitude"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                [(ngModel)]="longitude"
+                placeholder="longitude"
+              />
+            </td>
+            <!-- <td>
           <input type="text" [(ngModel)]="comment" placeholder="comment" />
         </td> -->
-        <td>
-          <button (click)="postNewLocationMarker()">
-            Set new location marker
-          </button>
-        </td>
-      </tr>
-    </tfoot>
-  </table>
+            <td>
+              <button (click)="postNewLocationMarker()">
+                Set new location marker
+              </button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div></div>
+  </div>
 </div>

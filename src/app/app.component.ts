@@ -6,5 +6,5 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  title = "Custom Google Maps with style - Tamk Project Work";
+  title = "Custom Google Maps with Angular & Node.js - TAMK project work";
 }

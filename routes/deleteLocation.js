@@ -8,13 +8,13 @@ const db = require("../db/db");
 router.delete("/:id", async (req, res) => {
   /* const { id } = req.body; */
   const id = req.params.id;
-  console.log("body at del:", req.body);
+  console.log("delete request id:", id);
   try {
     await db.query(
       ` DELETE FROM   locations
         WHERE         id = ${id}`
     );
-    console.log("Request success, req body:", res.req.body);
+    console.log("DELETE request success");
     return res.status(204).send("Delete location successfully");
   } catch (err) {
     console.error(err.message);

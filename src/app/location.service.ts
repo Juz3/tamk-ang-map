@@ -18,9 +18,13 @@ interface LocationResponse {
 @Injectable()
 export class LocationService {
   private http: HttpClient;
+  private url: string;
+  private devUrl: string;
 
   constructor(http: HttpClient) {
     this.http = http;
+    this.url = "https://tamk-ang-map.herokuapp.com";
+    this.devUrl = "http://localhost:5000";
   }
 
   fetch(callback) {
@@ -28,8 +32,8 @@ export class LocationService {
     this.http
       .get<ItemResponse>(
         environment.production
-          ? "https://tamk-ang-map.herokuapp.com/api/locations/"
-          : "http://localhost:5000/api/locations/"
+          ? `${this.url}/api/locations/`
+          : `${this.devUrl}/api/locations/`
       )
       .subscribe((jsonObject) => {
         console.log("at service fetch", jsonObject);
@@ -38,30 +42,39 @@ export class LocationService {
   }
 
   post(lat: number, lon: number) {
-    const body = { latitude: lat, longitude: lon };
-    console.log("at post, body:", body);
-    this.http
-      .post<LocationResponse>(
-        environment.production
-          ? "https://tamk-ang-map.herokuapp.com/api/locations/new"
-          : "http://localhost:5000/api/locations/new",
-        body,
-        {
-          observe: "response",
-        }
-      )
-      .subscribe((response) => {
-        console.log(response.status);
-        console.log(response.body);
-      });
+    if (lat > -90 && lat < 90 && lon > -180 && lon < 180) {
+      const body = { latitude: lat, longitude: lon };
+      console.log("at post, body:", body);
+      this.http
+        .post<LocationResponse>(
+          environment.production
+            ? `${this.url}/api/locations/new`
+            : `${this.devUrl}/api/locations/new`,
+          body,
+          {
+            observe: "response",
+          }
+        )
+        .subscribe((response) => {
+          if (response.status === 201) {
+            console.log("insert new location successfully");
+          } else {
+            console.log("Response status:", response.status);
+          }
+        });
+    } else {
+      console.log(
+        "Latitude must be between -90 and 90. Longitude must be between -180 and 180."
+      );
+    }
   }
 
   delete(locationId: number) {
     this.http
       .delete(
         environment.production
-          ? `https://tamk-ang-map.herokuapp.com/api/locations/${locationId}`
-          : `http://localhost:5000/api/locations/${locationId}`,
+          ? `${this.url}/api/locations/${locationId}`
+          : `${this.devUrl}/api/locations/${locationId}`,
         {
           observe: "response",
           responseType: "text",
