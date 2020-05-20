@@ -19,8 +19,8 @@ export class LocationsComponent implements OnInit {
   longitude: string;
 
   constructor(
-    locationService: LocationService,
-    private changeDetection: ChangeDetectorRef
+    private changeDetection: ChangeDetectorRef,
+    locationService: LocationService
   ) {
     this.locationService = locationService;
   }

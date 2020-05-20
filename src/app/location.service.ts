@@ -10,7 +10,6 @@ interface ItemResponse {
 }
 
 interface LocationResponse {
-  id: number;
   latitude: number;
   longitude: number;
 }
@@ -28,7 +27,6 @@ export class LocationService {
   }
 
   fetch(callback) {
-    console.log("at get");
     this.http
       .get<ItemResponse>(
         environment.production
